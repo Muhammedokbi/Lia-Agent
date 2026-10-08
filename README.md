@@ -10,7 +10,7 @@ Bu rehber, bu depodaki `ollama-tool-followup` branch'ini başka bir bilgisayara 
 - **Ollama:** İşletim sisteminize uygun Ollama kurulumuyla yüklenir.
 - **LLM modeli:** `ollama pull` komutuyla Ollama'ya ayrıca indirilir.
 
-Hermes kurulum betiği Ollama'yı veya Qwen model dosyalarını indirmez. Model indirmek için gereken depolama alanı da bilgisayarınızda ayrıca bulunmalıdır.
+Hermes kurulum betiği Ollama'yı veya Gemma model dosyalarını indirmez. Model indirmek için gereken depolama alanı da bilgisayarınızda ayrıca bulunmalıdır.
 
 ## Gerekenler
 
@@ -67,16 +67,16 @@ ollama list
 
 `ollama` komutu bulunamıyorsa Ollama kurulumu tamamlanmamış olabilir veya terminali yeniden açmanız gerekebilir.
 
-## 4. Qwen modelini Ollama'ya indirin
+## 4. Gemma 4 modelini Ollama'ya indirin
 
-Bu rehberde örnek model olarak `qwen3.8:latest` kullanılıyor. İndirmek için:
+Bu rehberde `gemma4:12b` modeli kullanılıyor. Ollama'ya indirmek için:
 
 ```bash
-ollama pull qwen3.8:latest
+ollama pull gemma4:12b
 ollama list
 ```
 
-`ollama pull` modeli Ollama'nın yerel model deposuna indirir; model dosyası bu Git deposuna eklenmez. [Ollama model sayfasında](https://ollama.com/library/qwen3.8) `qwen3.8:latest` indirme boyutu yaklaşık 18 GB olarak listeleniyor; modelin çalışması için ayrıca yeterli RAM/VRAM gerekir. Gerçek bellek ihtiyacı bilgisayara ve kullanılan ayarlara bağlıdır. Model adının Ollama kitaplığında bulunması ve araç çağrısını desteklemesi gerekir. Bu etiketi indiremezseniz veya bilgisayarınız çalıştırmak için yetersiz kalırsa Ollama'dan indirebildiğiniz, donanımınıza uygun başka bir araç destekli model seçin; aşağıdaki `qwen3.8:latest` değerlerini seçtiğiniz model adıyla değiştirin.
+`ollama pull` modeli Ollama'nın yerel model deposuna indirir; model dosyası bu Git deposuna eklenmez. Model indirme ve çalıştırma için gereken disk/RAM/VRAM miktarı bilgisayara ve Ollama'nın model sürümüne bağlıdır. Modelin araç çağrılarını desteklediğinden emin olun. Başka bir model kullanmak isterseniz aşağıdaki `gemma4:12b` değerlerini Ollama'daki model etiketiyle değiştirin.
 
 ## 5. LiaAgent'i Ollama'ya bağlayın
 
@@ -92,7 +92,7 @@ Sağlayıcı olarak **Custom Endpoint** seçip şu değerleri girin:
 - API mode: `chat_completions`
 - Base URL: `http://127.0.0.1:11434/v1`
 - API key: boş bırakın; Ollama yerel bağlantıda API anahtarı gerektirmez.
-- Model: `qwen3.8:latest`
+- Model: `gemma4:12b`
 
 Bu URL, Ollama aynı bilgisayarda ve LiaAgent ile aynı ağ ortamında çalışırken kullanılır. Ollama başka bir bilgisayarda veya Windows ana makinede, LiaAgent ise WSL2'de çalışıyorsa `127.0.0.1` yerine WSL'den erişilebilen adresi kullanın.
 
@@ -100,7 +100,7 @@ Gerekirse `~/.hermes/config.yaml` dosyasındaki `model` bölümü şu şekilde o
 
 ```yaml
 model:
-  default: qwen3.8:latest
+  default: gemma4:12b
   provider: custom
   base_url: http://127.0.0.1:11434/v1
   api_mode: chat_completions
@@ -132,3 +132,41 @@ Bu branch'te LiaAgent, yerel Ollama sunucusunu algıladığında native `/api/ch
 - `curl` bağlantı hatası veriyorsa Ollama'nın çalıştığını ve LiaAgent'in kullandığı ortamdan erişilebilir olduğunu kontrol edin.
 - Model araç çağrısı yapmıyorsa Ollama'da tool calling destekleyen bir model seçin.
 - Daha küçük bir model seçmek bellek ihtiyacını azaltabilir; yanıt kalitesi ve araç kullanımı modelden modele değişir.
+
+
+
+
+
+
+
+
+
+## eksık
+────────────────────────────────────────
+● şimdi kamerayi aç kamerada ne gordugunu ozetle bana
+────────────────────────────────────────
+
+
+┌─ Reasoning ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+The user wants me to "open the camera" and summarize what I see.
+I am an AI assistant (Hermes Agent) operating in a text-based/code-driven environment
+.
+I do *not* have direct, real-time access to the user's device camera.
+
+I should explain this limitation clearly but politely.
+
+Plan:
+1. State that I cannot directly access the camera.
+2. If the user provides an image or uses a tool like `vision_analyze` (if an image
+ path were provided), I could see that, but a live camera stream is not a capability
+.
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Maalesef doğrudan cihazınızın kamerasını açma veya canlı video akışını görme yeteneğim bulunmuyor. Ancak, bir fotoğraf çekip bana gönderirseniz veya bir görselin yolunu belirtirseniz, o görüntü üzerinde analiz yapabilir ve size içeriğini özetleyebilirim.
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+ ☤ gemma4:12b │ 21.5K/262.1K │ [█░░░░░░░░░] 8% │ ◷ 28.2s │ ↑ 11 t/s │ 6m │ ⏲ 28s │ ✓ 0s                 ─ Terminal ls komutu ve özet 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ Turn these notes into a to-do list
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ 
