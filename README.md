@@ -12,7 +12,7 @@ Bu yönergeler, bu depodaki Ollama tool devam düzeltmesini içeren Hermes sür�
 Forkunuzu oluşturduktan sonra kendi bilgisayarınızda:
 
 ```bash
-git remote add myfork https://github.com/Muhammedokbi/LiaAgent.git
+git remote add myfork https://github.com/Muhammedokbi/hermes-agent.git
 git push -u myfork ollama-tool-followup
 ```
 
@@ -21,9 +21,9 @@ git push -u myfork ollama-tool-followup
 Linux veya macOS terminalinde:
 
 ```bash
-REPO="https://github.com/Muhammedokbi/LiaAgent.git"
+REPO="https://github.com/Muhammedokbi/hermes-agent.git"
 BRANCH="ollama-tool-followup"
-curl -fsSL "https://raw.githubusercontent.com/Muhammedokbi/LiaAgent/$BRANCH/scripts/install.sh" -o /tmp/hermes-install.sh
+curl -fsSL "https://raw.githubusercontent.com/Muhammedokbi/hermes-agent/$BRANCH/scripts/install.sh" -o /tmp/hermes-install.sh
 HERMES_REPO_URL="$REPO" bash /tmp/hermes-install.sh --branch "$BRANCH"
 ```
 
@@ -41,7 +41,7 @@ ollama list
 
 Modelin disk ve RAM/VRAM ihtiyacı bilgisayara göre değişir. Bu model o makineye sığmıyorsa Ollama'da tool çağrısını destekleyen uygun başka bir model seçebilirsiniz.
 
-## 4. Hermes'i Ollama'ya bağlayın
+## 4. LiaAgent'i Ollama'ya bağlayın
 
 `lia setup` sihirbazında **Custom Endpoint** seçin ve şunları girin:
 
