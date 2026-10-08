@@ -1,15 +1,15 @@
-# Hermes Agent + Ollama kurulumu
+# LiaAgent + Ollama kurulumu
 
 Bu yönergeler, bu depodaki Ollama tool devam düzeltmesini içeren Hermes sürümünü başka bir bilgisayara kurmak içindir. Kurulum Ollama'yı, seçtiğiniz modeli ve Hermes'i ayrı ayrı hazırlar.
 
 ## 1. Bu düzeltilmiş sürümü GitHub'a koyun
 
-Önce bu depodaki `ollama-tool-followup` branch'ini kendi GitHub deponuza gönderin. Aşağıdaki `KULLANICI` ve `DEPO` yer tutucularını kendi GitHub bilgilerinizle değiştirin. Depo herkese açık olmalı; özel depolar için bilgisayarda GitHub erişimi önceden yapılandırılmalıdır.
+Önce GitHub hesabında `LiaAgent` adında boş bir depo oluşturun. Sonra bu depodaki `ollama-tool-followup` branch'ini gönderin. Depo herkese açık olmalı; özel depolar için bilgisayarda GitHub erişimi önceden yapılandırılmalıdır.
 
 Forkunuzu oluşturduktan sonra kendi bilgisayarınızda:
 
 ```bash
-git remote add myfork https://github.com/KULLANICI/DEPO.git
+git remote add myfork https://github.com/Muhammedokbi/LiaAgent.git
 git push -u myfork ollama-tool-followup
 ```
 
@@ -18,13 +18,13 @@ git push -u myfork ollama-tool-followup
 Linux veya macOS terminalinde:
 
 ```bash
-REPO="https://github.com/KULLANICI/DEPO.git"
+REPO="https://github.com/Muhammedokbi/LiaAgent.git"
 BRANCH="ollama-tool-followup"
-curl -fsSL "https://raw.githubusercontent.com/KULLANICI/DEPO/$BRANCH/scripts/install.sh" -o /tmp/hermes-install.sh
+curl -fsSL "https://raw.githubusercontent.com/Muhammedokbi/LiaAgent/$BRANCH/scripts/install.sh" -o /tmp/hermes-install.sh
 HERMES_REPO_URL="$REPO" bash /tmp/hermes-install.sh --branch "$BRANCH"
 ```
 
-Bu komut Hermes'in resmi kurulum akışını kullanır, ancak kodu upstream yerine sizin deponuzdaki düzeltilmiş branch'ten alır. Kurulum bittikten sonra yeni bir terminal açın ve `hermes --version` ile kontrol edin. Windows'ta Hermes'i WSL2 içinde kurun; Ollama Windows'ta çalışıyorsa WSL'den erişilebilen adresi kullanın.
+Bu komut Hermes'in resmi kurulum akışını kullanır, ancak kodu upstream yerine sizin deponuzdaki düzeltilmiş branch'ten alır. Kurulum bittikten sonra yeni bir terminal açın ve `lia --version` ile kontrol edin. Windows'ta Hermes'i WSL2 içinde kurun; Ollama Windows'ta çalışıyorsa WSL'den erişilebilen adresi kullanın.
 
 ## 3. Ollama ve modeli kurun
 
@@ -40,7 +40,7 @@ Modelin disk ve RAM/VRAM ihtiyacı bilgisayara göre değişir. Bu model o makin
 
 ## 4. Hermes'i Ollama'ya bağlayın
 
-`hermes setup` sihirbazında **Custom Endpoint** seçin ve şunları girin:
+`lia setup` sihirbazında **Custom Endpoint** seçin ve şunları girin:
 
 - Provider: `custom`
 - API mode: `chat_completions`
@@ -58,7 +58,7 @@ model:
   api_mode: chat_completions
 ```
 
-Ardından `hermes` komutuyla CLI'ı açıp basit bir isteği ve terminal tool çağrısını deneyin. Yerel Ollama için Hermes, doğru sunucu türünü algıladığında native `/api/chat` yolunu kullanır; bu yol tool sonucu sonrası devam isteğinde gereken `num_ctx` ayarını destekler.
+Ardından `lia` komutuyla CLI'ı açıp basit bir isteği ve terminal tool çağrısını deneyin. `hermes` komutu uyumluluk için çalışmayı sürdürür. Yerel Ollama için LiaAgent, doğru sunucu türünü algıladığında native `/api/chat` yolunu kullanır; bu yol tool sonucu sonrası devam isteğinde gereken `num_ctx` ayarını destekler.
 
 ## Araç ve becerileri aynı tutma
 
