@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="LiaAgent based on Hermes Agent" width="100%">
+  <img src="assets/banner.svg" alt="LiaAgent based on Hermes Agent" width="100%">
 </p>
 # LiaAgent + Ollama kurulumu
 
